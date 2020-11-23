@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            background-color: rgb(229, 250, 253);
+        }
+        #title {
+            text-align: center;
+            font-size: 20px;
+        }
+        #box {
+            width: 480px;
+            height: 300px;
+            margin: 50px auto;
+            overflow: hidden;
+            position: relative;
+        }
+
+        #box ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            position: absolute;
+            width: 3000px;
+        }
+
+        #box ul li {
+            overflow: hidden;
+            float: left;
+        }
+
+        #box ol {
+            list-style: none;
+            position: absolute;
+            bottom: 8px;
+            left: 280px;
+        }
+
+        #box ol li {
+            float: left;
+            width: 20px;
+            height: 20px;
+            line-height: 20px;
+            text-align: center;
+            border-radius: 50%;
+            background-color: #ccc; 
+            margin-right: 10px;
+        }
+
+        #left, #right {
+            width: 50px;
+            height: 80px;
+            background-color: rgba(0, 0, 0, 0.2);
+            color: #fff;
+            font-size: 30px;
+            line-height: 80px;
+            text-align: center;
+            display: none;
+            position: absolute;
+            top: 110px;
+        }
+
+        #left {
+            left: 0;
+        }
+
+        #right {
+            right: 0;
+        }
+        #role {
+            font: 12px/1.5 arial,'\5b8b\4f53',sans-serif;
+            list-style: none;
+            border: 0;
+            width: 135px;
+        }
+        .main_img {
+            color: #333;
+            font: 12px/1.5 arial,'\5b8b\4f53',sans-serif;
+            list-style: none;
+            margin: 0;
+            width: 758px;
+            padding: 15px;
+            border: 0;
+            overflow: hidden;
+            border-top: 0;
+        }
+        .text {
+            color: #333;
+            font: 12px/1.5 arial,'\5b8b\4f53',sans-serif;
+            list-style: none;
+            margin: 0;
+            width: 758px;
+            padding: 15px;
+            border: 0;
+            overflow: hidden;
+            border-top: 0;
+        }
+        .title .role {
+            color: #333;
+            font: 12px/1.5 arial,'\5b8b\4f53',sans-serif;
+            display: block;
+            clear: both;
+            border-left: 12px solid #7fb87a;
+            line-height: 24px;
+            font-size: 22px;
+            font-weight: 400;
+            font-family: Microsoft YaHei,SimHei,Verdana;
+            margin: 35px 0 15px -30px;
+            position: relative;
+        }
+        .title_text .role_text {
+            font: 12px/1.5 arial,'\5b8b\4f53',sans-serif;
+            font-family: Microsoft YaHei,SimHei,Verdana;
+            margin: 0;
+            float: left;
+            display: block;
+            padding: 0 8px 0 18px;
+            line-height: 24px;
+            font-size: 22px;
+            font-weight: 400;
+            color: #000;
+            background: #fff;
+        }
+        .text_t01 .role_01{
+            font: 12px/1.5 arial,'\5b8b\4f53',sans-serif;
+            font-family: Microsoft YaHei,SimHei,Verdana;
+            line-height: 24px;
+            font-size: 22px;
+            font-weight: 400;
+            color: #000;
+            display: none;
+        }
+        .jqjj .yppj{
+            font: 12px/1.5 arial,'\5b8b\4f53',sans-serif;
+            font-size: 14px;
+            word-wrap: break-word;
+            color: #333;
+            margin-bottom: 15px;
+            text-indent: 2em;
+            line-height: 24px;
+            zoom: 1;
+        }
+        .jz {
+            text-align: center;
+        }
+        .lemma-album {
+            font: 12px/1.5 arial,'\5b8b\4f53',sans-serif;
+            font-size: 14px;
+            text-indent: 2em;
+            line-height: 24px;
+            display: block;
+            border-bottom: 0;
+            margin: 10px 0;
+            position: relative;
+            color: #7fb87a;
+            text-decoration: none;
+            float: right;
+            clear: right;
+            margin-left: 20px;
+            width: 222px;
+        }
+        .album-wrap {
+            font: 12px/1.5 arial,'\5b8b\4f53',sans-serif;
+            font-size: 14px;
+            text-indent: 2em;
+            line-height: 24px;
+            color: #7fb87a;
+            border: solid 1px #e0e0e0;
+            overflow: hidden;
+            position: relative;
+            width: 220px;
+            height: 325.92592592593px;
+        }
+        .picture {
+            font: 12px/1.5 arial,'\5b8b\4f53',sans-serif;
+            font-size: 14px;
+            text-indent: 2em;
+            line-height: 24px;
+            color: #7fb87a;
+            display: block;
+            border: 0;
+            width: 220px;
+            height: 325.92592592593px;
+        }
+        .description {
+            font: 12px/1.5 arial,'\5b8b\4f53',sans-serif;
+            display: block;
+            text-align: left;
+            padding: 8px 7px;
+            line-height: 18px;
+            color: #555;
+            text-decoration: none;
+            font-size: 12px;
+            font-family: simSun;
+            border: solid 1px #e0e0e0;
+            border-top: 0;
+            text-indent: 0;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+        .number {
+            font: 12px/1.5 arial,'\5b8b\4f53',sans-serif;
+            text-align: left;
+            line-height: 18px;
+            font-size: 12px;
+            font-family: simSun;
+            text-indent: 0;
+            white-space: nowrap;
+            display: inline;
+            color: gray;
+        }
+        .albumBg {
+            font: 12px/1.5 arial,'\5b8b\4f53',sans-serif;
+            font-size: 14px;
+            text-indent: 2em;
+            line-height: 24px;
+            color: #7fb87a;
+            position: relative;
+            height: 4px;
+            width: 220px;
+        }
+        .ft_text {
+            border-top: 30px;
+            color: #000;
+            font-size: 12px;
+            list-style: none;
+            text-align: center;
+        } 
+        .website {
+            color: #000;
+            font-size: 30px;
+            list-style: none;
+            width: 100%;
+            min-width: 1250px;
+            position: fixed;
+            z-index: 302;
+            bottom: 0;
+            left: 0;
+            height: 40px;
+            overflow: hidden;
+            zoom: 1;
+            margin: 0;
+            background-color: #fbfbfb;
+            text-align: center;
+            line-height: 40px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div>
+            城南学院水利计通系 通信1902 李雅彤 201916180204 来自湖南湘潭，爱好网上冲浪。<dt></dt>
+            前一位同学 陈佳静 201916180203
+            后一位同学 梁慧 201916180205
+        </div>
+        <div id="box" class="all">
+            <div class="screen">
+                <ul>
+                    <li><img src="image\kwx6.jpg" width="480px" height="300px" alt=""></li>
+                    <li><img src="image\kwx5.jpg" width="480px" height="300px" alt=""></li>
+                    <li><img src="image\kwx4.jpg" width="480px" height="300px" alt=""></li>
+                    <li><img src="image\kwx1.jpg" width="480px" height="300px" alt=""></li>
+                    <li><img src="image\kwx2.jpg" width="480px" height="300px" alt=""></li>
+                </ul>
+                <ol></ol>
+            </div>
+            <div>
+                <span id="left">&lt;</span>
+                <span id="right">&gt;</span>
+            </div>
+        </div>
+        <div id="title">
+            麻辣小龙虾
+        </div>
+    </header>
+    <main>
+        <section>
+        
+            </div>
+            <div class="jz">
+                <img src="image\kwx3.jpg" alt="">
+            </div>
+            <div class="title">
+                <h2 class="title_text">
+                    <span class="title_t01">麻辣小龙虾</span>
+                    简介
+                </h2>
+            </div>
+            <div class="jqjj"><p></p>
+                <p></p>麻辣小龙虾，又名长沙口味虾、香辣小龙虾等，是湖南省著名的传统小吃，以小龙虾制成，口味辣鲜香，色泽红亮，质地滑嫩，滋味香辣。<dt></dt>
+
+20世纪末开始传遍全国，成为人们夏夜街边啤酒摊的经典小吃。<dt></dt>主料所用龙虾原产自北美洲，1918年由美国引入日本，1929年再由日本引入中国，生长在中国南方的河湖池沼中。<dt></dt>改革开放以来，随着湖南人遍布全国推广湘菜，特别是湖南卫视《快乐大本营》的传播，口味虾一时风靡全国，众多演艺明星来长沙做节目时必然忘不了吃口味虾。<dt></dt>这种色泽红亮香辣鲜浓的口味虾传到合肥、上海、北京等地，让那些不太喜欢辣椒的人都变得异常疯狂。
+            </div>
+            <div class="role">
+                <h2 class="role_text">
+                    <span class="role_t01">麻辣小龙虾</span>
+                    制作方法
+                </h2>
+            </div>
+            <div class="main_img">
+                <li id="img">
+                    <img id='role' src="image\kwx8.jpg" alt="">
+                    <dl class="text">制作食材
+
+                        龙虾，
+                        
+                        干红辣椒，植物油，精盐，味精，酱油，白醋，料酒，生姜，大蒜，葱花，香菜末。
+                        
+                        制作流程
+                        
+                        1.将龙虾先放在清水里养至少一到两天，让虾把身体里的淤泥吐尽。用废弃的牙刷将龙虾洗刷干净，尤其是头部与身体连接处，很脏;
+                        
+                        根据需要可以考虑去除龙虾的头并在虾尾部背上划开一道口子扯掉黑线。
+                        
+                        2.在锅中放油，油烧热将虾放入过油，此时不要放盐，待虾的表面呈红色迅速捞起备用，起锅;
+                        
+                        3.在锅中放植物油适量，将蒜和姜放入油锅里用中火炒出香味后，把虾、八角、桂皮放入锅中加适量水用大火烹煮
+                        
+                        4.水沸腾3分钟后将准备好的红辣椒、精盐、酱油、醋等作料适当倒入，闷一会儿;
+                        
+                        5.转中火，放适量料酒，加水至主料的一半，盖上锅盖，中火闷十分钟，待水熬成浓汁时，起锅后加葱花出锅盛碗。
+                        
+                        喜欢吃辣口的可适当添加含有豆豉类的辣酱，味更为香辣浓郁!</dl>
+                </li>
+                <li>
+                    <img id='role'src="" alt="">
+                    <dl class='text'></dl>
+                </li>
+                <li>
+                    <img id='role'src="" alt="">
+                    <dl class="text"></dl>
+                </li>
+            </div>
+            <div class="pl">
+                <h2 class="pl_text">
+                    <span class="pl_t01"></span>
+                    吃虾文化
+                </h2>
+            </div>
+            <div class="yppj">
+                <a class="lemma-album layout-right nslog:10000206" title="海报" href="" target="_blank" style="width:220px;" nslog-type="10000206">
+                    <div class="album-wrap" style="width:220px;height:325.92592592593px;">
+                    <img class="picture" alt="海报" src="image\kwx7.jpg" style="width:220px;height:325.92592592593px;">
+                    </div>
+                    <div class="description">
+                    海报<span class="number">(12张)</span>
+                    </div>
+                    <div class="albumBg" style="width:220px;">
+                    </div>
+                </a>
+                
+                &emsp;&emsp;1.长沙情结。长沙人爱吃口味虾，只能用"疯狂"这两个字来形容。口味虾自上世纪90年在长沙出现后，经过漫长的十几年时间，能一直得到嘴刁的长沙人的喜爱，可以说是创造了一个吃虾奇迹。相对于酒楼、食府而言，虽然吃口味虾的店面环境不是很好，有的甚至还是座在马路边上吃，但从名牌主持到影视名人到普通百姓，都抵挡不了这样一只小小口味虾的诱惑，一定要吃上一回才过瘾。
+
+                夏季正值吃口味虾的最佳季节，在夜幕降临的时候，走在长沙的街头巷尾，你会发现几乎每桌的食客都在对其桌上的那一盆盆口味虾在"张牙舞爪"，尽管个个被辣得嘴巴通红、眼泪汪汪、满头大汗，却依然都是那么乐此不疲，满怀斗志。
+                
+                口味虾，长沙人喜欢叫它为龙虾，其实并不是龙虾。虾子大的约五寸长，有双钳，壳硬;传说是从澳洲引进，后来，没有天敌，搞的到处都是，甚至还喜欢在大堤下面打洞，危害一方，生长非常快，所以长沙人一边吃它还一边带着一股为民除害的神情。
+            </div>
+            <div class="yppj">
+                &emsp;&emsp;2.口味虾节。长沙人对口味虾的热爱促使口味虾美食的制作与品尝在城市已经成为特色文化。长沙于2005年、2006年、2008年分别举办了3届口味虾节。
+
+                口味虾节2005年在世界之窗推出，短短二十几天的活动时间就吸引了4万余人的参与。2006年，以世界杯为看点的第二届口味虾节，更是在节会现场设置了一台300英寸的超大屏幕彩电，红、蓝、白三色绸缎包装天棚顶的独有看球场地，在四周还悬挂着32个参赛球队的国旗，很有现场氛围。观赛的同时，四娭毑、杨眼镜、辣不怕等10余种长沙最具代表性的口味虾也会让球迷们在过足眼瘾的同时过足口瘾。据口味虾节的组委会介绍，在球赛中场休息期会推出系列互动游戏，球迷通过参与游戏可免费赢取40份口味虾，同时每位球迷还可免费获得一瓶啤酒赠送，每晚11点半还会有班车送球迷回市区。
+                
+                2008年的第三届口味虾节为避开奥运会的高峰时期放在了9月底，而正是吃口味虾的好季节。在为期7天的北京第三届口味虾狂欢节里，8家湖南最著名的"虾店"展台前都围满了市民和游客，整个现场香气四逸，不少食客都是在街对面闻着香味找进来的，他们共"消灭"了3000余公斤小龙虾。
+            </div>
+            <div class="yppj">
+                &emsp;&emsp;
+            </div>
+            <div class="yppj">
+                &emsp;&emsp;
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="ft_text">
+        </div>
+        <div class="website">
+            <a href="http://tqjvod.tianqistatic.com/meishisp/sifangcai/img/202009/02/17ed666c12f84fa1.mp4">点击这里！观看诱人小龙虾的制作方法</a>
+        </div>
+    </footer>
+    
+    <script>
+        // 定时器间隔时间
+        var interval = 3000;
+
+        var box = document.getElementById('box');
+        var screen = box.children[0];
+        var ul = screen.children[0];
+        var ol = screen.children[1];
+
+        var arrLeft = document.getElementById('left');
+        var arrRight = document.getElementById('right');
+
+        // 获取图片的宽度
+        var imgWidth = box.offsetWidth;
+
+        function setInnerText(element, content) {
+            if (typeof element.innerText === 'string')
+                element.innerText = content;
+            else
+                element.textContent = content;
+        }
+
+        function animate(element, target, callback) {
+            // 判断之前是否开启了定时器
+            if (element.timerId)
+                clearInterval(element.timerId);
+
+            // 让每个执行动画的元素记录自己的定时器
+            element.timerId = setInterval(function () {
+                // 当前坐标
+                var current = element.offsetLeft;
+                var step = 10;
+
+                // 当当前位置 > 目标位置时，step 应该是负数
+                if (current > target)
+                    step = - Math.abs(step);
+
+                // 如果当前位置距离目标位置小于 step ，就直接达到目标位置
+                if (Math.abs(current - target) <= Math.abs(step)) {
+                    element.style.left = target + 'px';
+                    clearInterval(element.timerId);
+                    if (callback)
+                        callback();
+                    return;
+                }
+                current += step;
+                element.style.left = current + 'px';
+            }, 20);
+        }
+
+        // 动态生成序号
+        var count = ul.children.length;
+        for (var i = 0; i < count; ++i) {
+            var li = document.createElement('li');
+            setInnerText(li, i + 1);
+            ol.appendChild(li);
+
+            // li 记录它自己的索引
+            li.index = i;
+
+            // 点击序号切换图片
+            li.onclick = liClick;
+        }
+
+        // 默认第一个序号高亮显示
+        ol.children[0].style.backgroundColor = 'dodgerblue';
+
+        // 鼠标进入时显示箭头
+        box.onmouseenter = function () {
+            arrLeft.style.display = 'block';
+            arrRight.style.display = 'block';
+            // 停止定时器
+            clearInterval(timerId);
+        }
+        box.onmouseleave = function () {
+            arrLeft.style.display = "none";
+            arrRight.style.display = "none";
+            // 开启定时器
+            timerId = setInterval(function () {
+                arrRight.click();
+            }, interval);
+        }
+
+        // 点击序号动画切换图片
+        function liClick() {
+            animate(ul, -this.index * imgWidth);
+
+            // 让当前li序号高亮显示，其它序号取消高亮显示
+            for (i = 0; i < count; ++i)
+                ol.children[i].style.backgroundColor = '';
+            this.style.backgroundColor = 'dodgerblue';
+
+            // 点击序号时，记录下其index
+            index = this.index;
+        }
+
+        // 克隆第一个 li ，并添加到 ul 的最后
+        var cloneLi = ul.children[0].cloneNode(true);
+        ul.appendChild(cloneLi);
+
+        // 点击箭头显示 上一张 / 下一张
+        // 默认时，第一张图片的索引
+        var index = 0;
+        arrRight.onclick = function () {
+            if (index === count) {
+                index = 0;
+                ul.style.left = '0px';
+            }
+
+            ++index;
+            if (index < count) {
+                // 让对应序号的 li 被点击
+                ol.children[index].click();
+            } else {
+                // 以动画形式切换到克隆出来的第一张
+                animate(ul, -index * imgWidth);
+                // 取消所有序号的高亮
+                for (i = 0; i < count; ++i)
+                    ol.children[i].style.backgroundColor = '';
+                ol.children[0].style.backgroundColor = 'dodgerblue';
+            }
+        }
+
+        arrLeft.onclick = function () {
+            // 如果 index 为第一张，直接跳转到克隆出的最后一张
+            if (index === 0) {
+                index = count;
+                ul.style.left = -index * imgWidth + 'px';
+            }
+            --index;
+            // if (index >= 0) {
+                ol.children[index].click();
+            // }
+        }
+
+        // 自动切换图片
+        var timerId = setInterval(function () {
+            arrRight.click();
+        }, interval);
+        </script>
+</body>
+</html>
